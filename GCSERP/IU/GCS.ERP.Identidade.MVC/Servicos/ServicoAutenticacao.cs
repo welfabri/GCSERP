@@ -23,7 +23,7 @@ namespace GCS.ERP.Identidade.MVC.Servicos
         {
             var loginContent = ObterConteudo(usuarioLogin);
 
-            var response = await _httpClient.PostAsync("/api/identidade/autenticar", loginContent);
+            var response = await _httpClient.PostAsync("api/identidade/autenticar", loginContent);
 
             if (!TratarErrosResponse(response))
             {
@@ -32,8 +32,9 @@ namespace GCS.ERP.Identidade.MVC.Servicos
                     ResponseResult = await DeserializarObjetoResponse<ResponseResult>(response)
                 };
             }
-
-            return await DeserializarObjetoResponse<ViewModelUsuarioRespostaLogin>(response);
+            
+            var r = await DeserializarObjetoResponse<ViewModelUsuarioRespostaLogin>(response);
+            return r;
         }
 
         public async Task<ViewModelUsuarioRespostaLogin> Registro(ViewModelUsuarioRegistro usuarioRegistro)
@@ -50,7 +51,8 @@ namespace GCS.ERP.Identidade.MVC.Servicos
                 };
             }
 
-            return await DeserializarObjetoResponse<ViewModelUsuarioRespostaLogin>(response);
+            var r = await DeserializarObjetoResponse<ViewModelUsuarioRespostaLogin>(response);
+            return r;
         }
     }
 }
