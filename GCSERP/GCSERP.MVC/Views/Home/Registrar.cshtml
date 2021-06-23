@@ -1,0 +1,55 @@
+﻿@model GCS.ERP.Identidade.Aplicacao.ViewModels.ViewModelUsuarioRegistro;
+@{
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <form asp-action="registrar">
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <input asp-for="NomeCompleto" class="form-control" />
+                        <label asp-for="NomeCompleto" class="form-label">Nome Completo</label>
+                        <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <input asp-for="Cargo" class="form-control" />
+                        <label asp-for="Cargo" class="form-label">Cargo</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="form-label"></label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input asp-for="Senha" class="form-control" />
+                <label asp-for="Senha" class="form-label"></label>
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input asp-for="SenhaConfirmacao" class="form-control" />
+                <label asp-for="SenhaConfirmacao" class="form-label"></label>
+                <span asp-validation-for="SenhaConfirmacao" class="text-danger"></span>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Criar Usuário</button>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

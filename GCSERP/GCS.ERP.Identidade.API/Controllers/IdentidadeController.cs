@@ -1,6 +1,6 @@
 ﻿using GCS.ERP.Identidade.API.Extensoes;
 using GCS.ERP.Identidade.API.Modelos;
-using Microsoft.AspNetCore.Http;
+using GCS.ERP.Identidade.Aplicacao.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
