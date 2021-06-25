@@ -1,5 +1,4 @@
 using GCSERP.MVC.Extensoes;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +20,8 @@ namespace GCSERP.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddExtensaoIdentidade(Configuration);
+            services.AddExtensaoBD(Configuration);
+            services.AddInjecaoDependencias();
 
             services.AddControllersWithViews();
         }

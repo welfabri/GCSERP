@@ -25,7 +25,6 @@ namespace GCS.ERP.Identidade.API.Configuracoes
 
 
             // JWT
-
             var appSettingsSection = configuration.GetSection("AppSettings");
             services.Configure<ConfiguracoesAPI>(appSettingsSection);
 
