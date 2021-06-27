@@ -19,7 +19,7 @@ namespace GCSERP.MVC.Models
             => _mapper = mapper;   
 
         [Display(Name ="Código Interno")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Display(Name ="Código Externo")]
         public string CodigoExterno { get; set; }
@@ -36,11 +36,11 @@ namespace GCSERP.MVC.Models
         
         [Required(ErrorMessage = CAMPOOBRIGATORIO)]
         [Display(Name = "Grupo da Unidade de Medida")]
-        public short UnidadeMedidaClassificacao { get; set; }
+        public int UnidadeMedidaClassificacao { get; set; }
         
         [Required(ErrorMessage = CAMPOOBRIGATORIO)]
         [Display(Name = "Unidade")]
-        public short UnidadeMedidaEstoque { get; set; }
+        public int UnidadeMedidaEstoque { get; set; }
 
         public int NCM { get; set; }
         
@@ -49,14 +49,14 @@ namespace GCSERP.MVC.Models
 
         [Display(Name = "Classificação")]
         [Required(ErrorMessage = CAMPOOBRIGATORIO)]
-        public Guid ProdutoClassificacaoId { get; set; }
+        public int ProdutoClassificacaoId { get; set; }
 
         public List<SelectListItem> Classificacoes { get; set; }
 
         [Display(Name = "Versão Interna")]
         public byte VersaoInterna { get; set; }
 
-        public bool Apagado { get; set; }
+        public bool FoiApagado { get; set; }
         
         [Display(Name = "Inserido Im")]
         public DateTime DataInsercao { get; set; }
@@ -75,7 +75,7 @@ namespace GCSERP.MVC.Models
         internal static ProdutoViewModel DevolverProdutoVM(IMapper mapper,
             Produto produto)
         {
-            ProdutoViewModel result = new ProdutoViewModel(mapper);
+            ProdutoViewModel result = new(mapper);
             result._mapper.Map(produto, result);
 
             return result;

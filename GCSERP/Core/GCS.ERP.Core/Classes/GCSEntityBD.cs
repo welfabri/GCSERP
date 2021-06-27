@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace GCS.ERP.Core.Classes
 {
@@ -40,7 +39,7 @@ namespace GCS.ERP.Core.Classes
         protected void AtualizarDataRemocao()
             => DataRemocao = DateTime.Now;
 
-        protected void Apagar()
+        public void Apagar()
         {
             Apagado = "S";
             AtualizarDataRemocao();

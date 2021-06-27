@@ -1,0 +1,119 @@
+﻿@model IEnumerable<GCSERP.MVC.Models.ProdutoViewModel>
+
+@{
+    ViewData["Title"] = "AbrirClassificacao";
+}
+
+<h1>AbrirClassificacao</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoExterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadeMedidaClassificacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadeMedidaEstoque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NCM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProdutoClassificacaoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VersaoInterna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoiApagado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInsercao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataAtualizacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataRemocao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoExterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadeMedidaClassificacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadeMedidaEstoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NCM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacoes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdutoClassificacaoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VersaoInterna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoiApagado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInsercao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAtualizacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataRemocao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

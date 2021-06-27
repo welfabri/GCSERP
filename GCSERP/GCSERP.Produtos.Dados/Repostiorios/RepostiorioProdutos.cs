@@ -1,5 +1,4 @@
 ﻿using GCS.ERP.Core.Interfaces;
-using GCS.ERP.Core.VO;
 using GCSERP.Produtos.Dados.Contextos;
 using GCSERP.Produtos.Entidades.Classes;
 using GCSERP.Produtos.Entidades.Interfaces;
@@ -22,7 +21,7 @@ namespace GCSERP.Produtos.Dados.Repostiorios
         public void Adicionar(Produto produto)
             => _contexto.Produtos.Add(produto);
 
-        public async Task ApagarAsync(GCSBDId id)
+        public async Task ApagarAsync(int id)
         {
             var o = await ObterAsync(id);
             _contexto.Produtos.Remove(o);
@@ -36,7 +35,7 @@ namespace GCSERP.Produtos.Dados.Repostiorios
             _contexto?.Dispose();
         }
 
-        public async Task<Produto> ObterAsync(GCSBDId id)
+        public async Task<Produto> ObterAsync(int id)
             => await _contexto.Produtos.FindAsync(id);
 
         public async Task<List<Produto>> ObterTodosAsync()

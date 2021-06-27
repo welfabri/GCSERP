@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace GCSERP.MVC.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -38,6 +38,7 @@ namespace GCSERP.MVC.Controllers
 
         [AllowAnonymous]
         [HttpGet("entrar")]
+        [HttpGet("login")]
         public IActionResult Entrar(string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -46,6 +47,7 @@ namespace GCSERP.MVC.Controllers
 
         [AllowAnonymous]
         [HttpPost("entrar")]
+        [HttpPost("login")]
         public async Task<IActionResult> Entrar(ViewModelUsuarioLogin usuarioLogin, string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;

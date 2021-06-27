@@ -25,6 +25,9 @@ namespace GCS.ERP.Core.VO
         public static implicit operator GCSERPNCM(int ncm)
             => CriaNCMInt(ncm);
 
+        public static implicit operator int(GCSERPNCM ncm)
+            => ncm.Valor;
+
         public static implicit operator GCSERPNCM(string ncm)
             => CriaNCMString(ncm);
 
