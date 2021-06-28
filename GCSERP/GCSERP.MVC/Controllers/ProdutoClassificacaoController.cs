@@ -3,13 +3,11 @@ using GCSERP.MVC.Models;
 using GCSERP.Produtos.Entidades.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GCSERP.MVC.Controllers
 {
+    [Route("produto-classificacao")]
     public class ProdutoClassificacaoController : Controller
     {
         private readonly IMapper _mapper;
@@ -23,8 +21,8 @@ namespace GCSERP.MVC.Controllers
         }
 
         //[HttpGet("")]
-        [HttpGet("/produtoclassificacao/index")]
-        [HttpGet("/produtoclassificacao/listar-classificacoes")]
+        [HttpGet("index")]
+        [HttpGet("listar-classificacoes")]
         public async Task<IActionResult> Index()
         {
             var produtos = await _repositorioProdutosClassificacoes.ObterTodosAsync();

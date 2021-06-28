@@ -10,6 +10,8 @@ namespace GCSERP.MVC.Extensoes
         {
             CreateMap<Produto, ProdutoViewModel>()
                 .ReverseMap();
+            CreateMap<ProdutoClassificacao, ProdutoClassificacaoViewModel>()
+                .ReverseMap();
         }
     }
 }

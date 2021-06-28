@@ -4,14 +4,16 @@ using GCSERP.Produtos.Dados.Contextos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GCSERP.MVC.Migrations
 {
     [DbContext(typeof(DbContextProdutos))]
-    partial class DbContextProdutosModelSnapshot : ModelSnapshot
+    [Migration("20210628015500_SegundaAlteracao")]
+    partial class SegundaAlteracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
