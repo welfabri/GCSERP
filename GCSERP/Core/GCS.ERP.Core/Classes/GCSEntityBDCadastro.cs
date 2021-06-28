@@ -4,5 +4,6 @@
     {
         public string CodigoExterno { get; set; }
         public byte VersaoInterna { get; set; } = 1;
+        public bool Ativo { get; set; } = true;
     }
 }

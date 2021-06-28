@@ -49,7 +49,7 @@ namespace GCSERP.MVC.Models
 
         [Display(Name = "Classificação")]
         [Required(ErrorMessage = CAMPOOBRIGATORIO)]
-        public int ProdutoClassificacaoId { get; set; }
+        public SelectListItem ProdutoClassificacaoId { get; set; }
 
         public List<SelectListItem> Classificacoes { get; set; }
 
@@ -67,10 +67,28 @@ namespace GCSERP.MVC.Models
         [Display(Name = "Removido Em")]
         public DateTime DataRemocao { get; set; }
 
+        internal static ProdutoViewModel Instanciar(List<ProdutoClassificacao> classificacoes)
+        {
+            ProdutoViewModel result = new ProdutoViewModel();
+            result.PreencherClassificacoes(classificacoes);
+
+            return result;
+        }
+
+        internal bool Validar()
+        {
+            return true;
+        }
+
         internal void PreencherClassificacoes(List<ProdutoClassificacao> classificacoes)
             => classificacoes.ForEach(
                 x => Classificacoes.Add(
                     new SelectListItem(x.Nome, x.Id.ToString())));
+
+        internal Produto Produto()
+        {
+            throw new NotImplementedException();
+        }
 
         internal static ProdutoViewModel DevolverProdutoVM(IMapper mapper,
             Produto produto)
@@ -81,7 +99,7 @@ namespace GCSERP.MVC.Models
             return result;
         }
 
-        internal static List<ProdutoViewModel> DelvoverListaProdutosVM(IMapper mapper,
+        internal static List<ProdutoViewModel> DelvoverListaVM(IMapper mapper,
             List<Produto> produtos)
         {
             List<ProdutoViewModel> result = new();

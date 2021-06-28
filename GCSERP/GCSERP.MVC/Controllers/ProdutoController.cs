@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GCSERP.MVC.Models;
+using GCSERP.Produtos.Entidades.Classes;
 using GCSERP.Produtos.Entidades.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,12 +14,15 @@ namespace GCSERP.MVC.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IRepositorioProdutos _repositorioProdutos;
+        private readonly IRepositorioProdutosClassificacoes _repositorioProdutosClassificacoes;
 
         public ProdutoController(IMapper mapper, 
-            IRepositorioProdutos repositorioProdutos)
+            IRepositorioProdutos repositorioProdutos,
+            IRepositorioProdutosClassificacoes repositorioProdutosClassificacoes)
         {
             _mapper = mapper;
             _repositorioProdutos = repositorioProdutos;
+            _repositorioProdutosClassificacoes = repositorioProdutosClassificacoes;
         }
 
         //[HttpGet("")]
@@ -27,7 +31,7 @@ namespace GCSERP.MVC.Controllers
         public async Task<IActionResult> Index()
         {
             var produtos = await _repositorioProdutos.ObterTodosAsync();
-            var produtosVM = ProdutoViewModel.DelvoverListaProdutosVM(_mapper, produtos);
+            var produtosVM = ProdutoViewModel.DelvoverListaVM(_mapper, produtos);
 
             return View(produtosVM);
         }
@@ -47,9 +51,12 @@ namespace GCSERP.MVC.Controllers
         [HttpGet("/produto/novo")]
         [HttpGet("/produto/criar")]
         [HttpGet("/produto/inserir")]
-        public ActionResult Criar()
+        public async Task<ActionResult> Criar()
         {
-            return View();
+            var classificacoes = await _repositorioProdutosClassificacoes.ObterTodosAtivosAsync();
+            ProdutoViewModel vm = ProdutoViewModel.Instanciar(classificacoes);
+
+            return View(vm);
         }
 
         // POST: ProdutoClassificacao/novo
@@ -57,14 +64,24 @@ namespace GCSERP.MVC.Controllers
         [HttpPost("/produto/criar")]
         [HttpGet("/produto/inserir")]
         [ValidateAntiForgeryToken]
-        public ActionResult Criar(IFormCollection collection)
+        public async Task<IActionResult> Criar(ProdutoViewModel produtoViewModel)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return View();
 
-
+                if (produtoViewModel.Validar())
+                {
+                    Produto produto = produtoViewModel.Produto();
+                    _repositorioProdutos.Adicionar(produto);
+                    await _repositorioProdutos.UOW.CommitAsync();
+                } 
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Dados inválidos!");
+                    return await Criar();
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -127,7 +144,7 @@ namespace GCSERP.MVC.Controllers
         public async Task<IActionResult> AbrirClassificacao()
         {
             var produtos = await _repositorioProdutos.ObterTodosAsync();
-            var produtosVM = ProdutoViewModel.DelvoverListaProdutosVM(_mapper, produtos);            
+            var produtosVM = ProdutoViewModel.DelvoverListaVM(_mapper, produtos);            
 
             return View(produtosVM);
         }

@@ -1,6 +1,4 @@
 ﻿using GCSERP.Produtos.Dados.Contextos;
-using GCSERP.Produtos.Dados.Repostiorios;
-using GCSERP.Produtos.Entidades.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +16,6 @@ namespace GCSERP.MVC.Extensoes
             services.AddDbContext<DbContextProdutos>(
                 options => options.UseSqlServer(cs, 
                     b => b.MigrationsAssembly("GCSERP.MVC")));
-            services.AddScoped<IRepositorioProdutos, RepostiorioProdutos>();
 
             return services;
         }

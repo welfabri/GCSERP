@@ -12,7 +12,7 @@ namespace GCSERP.Produtos.Dados.Contextos
         {
         }
 
-        public DbSet<ProdutoClassificacao> ClassificacoesProdutos { get; set; }
+        public DbSet<ProdutoClassificacao> ProdutosClassificacoes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
 
         public async Task<bool> CommitAsync()
